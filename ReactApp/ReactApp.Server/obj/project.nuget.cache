@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "v5Syzsu/HR8MtkIX3zXhzfKeNAx/Ps5XSvpe6LF85tptSFELBz2AuyXAqPPrOBXB4knvIUx6w5nGxWSs4T5fgA==",
+  "dgSpecHash": "dIBae6PYjQXUL9C3H1D/urH2/xZ0jTaD5JjeH0qonyUEqpuF7y7kGD8TDjAVx37s5ixo/sbDT9/LPzqYtHkljg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP_NET_WebApplication\\ReactApp\\ReactApp.Server\\ReactApp.Server.csproj",
+  "projectFilePath": "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP.NET-React-WebApp\\ReactApp\\ReactApp.Server\\API.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\k-pas\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\k-pas\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

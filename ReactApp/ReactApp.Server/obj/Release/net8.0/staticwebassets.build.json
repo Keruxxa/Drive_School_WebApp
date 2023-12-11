@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "qDW6+t/ScpOET+f4JxslPMoYcgKZraDWAHBpmDOMg2o=",
+  "Source": "API.Server",
+  "BasePath": "_content/API.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP.NET-React-WebApp\\ReactApp\\reactapp.client\\reactapp.client.esproj",
+      "Version": 2,
+      "Source": "reactapp.client",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Release;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Release;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -15,6 +15,6 @@ namespace ReactApp.Server.Models
         public string FirstName { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
-        public string LarstName { get; set; }
+        public string LastName { get; set; }
     }
 }

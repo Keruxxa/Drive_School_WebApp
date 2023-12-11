@@ -13,6 +13,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddCors(options => options.AddPolicy(name: "UsersOrigins",
+    policy =>
+    {
+        policy.WithOrigins("https://localhost:5173").AllowAnyMethod().AllowAnyHeader();
+    }));
 
 
 var app = builder.Build();
@@ -26,6 +31,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("UsersOrigins");
 
 app.UseHttpsRedirection();
 
