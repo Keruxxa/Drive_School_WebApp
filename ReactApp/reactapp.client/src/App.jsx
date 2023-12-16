@@ -1,51 +1,45 @@
-import { useEffect, useState } from 'react';
-import './App.css';
+import { Component, useEffect, useState } from 'react'
+import axios from 'axios'
+import UserList from './components/UserList'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import UserForm from './components/UserForm'
 
 function App() {
-    const [users, setUsers] = useState();
+   const [users, setUsers] = useState([])
+   const [isUsersLoading, setIsUsersLoading] = useState(false)
 
-    useEffect(() => {
-        populateUsersData();
-    }, []);
+   const API_URL = 'https://localhost:7117'
 
-    const contents = users === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : <table className="table table-striped" aria-labelledby="tabelLabel">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                {users.map(user =>
-                    <tr key={user.id}>
-                        <td>{user.id}</td>
-                        <td>{user.firstName}</td>
-                        <td>{user.lastName}</td>
-                        <td>{user.email}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>;
+   async function fetchUsers() {
+      setIsUsersLoading(true)
+      const response = await axios.get(API_URL + '/User/GetAll')
+      setUsers(response.data)
+      setIsUsersLoading(false)
+   }
 
-    return (
-        <div>
-            <h1 id="tabelLabel">Users</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
-        </div>
-    );
-    
-    async function populateUsersData() {
-        const response = await fetch('https://localhost:7117/User/GetAll');
-        const data = await response.json();
-        setUsers(data);
-        console.log(users);
-    }
-    
+   useEffect(() => {
+      fetchUsers()
+   }, [])
+
+   const addNewUser = (newUser) => {
+      setUsers([...users, newUser])
+   }
+
+   return (
+      <div className="container">
+         <UserForm create={addNewUser} />
+         {
+            users.length
+               ?
+               <UserList users={users} />
+
+               :
+               <h1 style={{ textAlign: 'center' }}>
+                  Список пользоваетелей пуст
+               </h1>
+         }
+      </div>
+   )
 }
 
-export default App;
+export default App

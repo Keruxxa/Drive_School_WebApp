@@ -1,3 +1,4 @@
+using API.Server.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ReactApp.Server.Data;
 using ReactApp.Server.Services.UserService;
@@ -5,14 +6,14 @@ using ReactApp.Server.Services.UserService;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("UserDbContextConnection");
 
-// Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer(connectionString));
+
 builder.Services.AddCors(options => options.AddPolicy(name: "UsersOrigins",
     policy =>
     {

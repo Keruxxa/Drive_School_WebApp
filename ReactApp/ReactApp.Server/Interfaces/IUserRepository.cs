@@ -1,8 +1,8 @@
 ﻿using ReactApp.Server.Models;
 
-namespace ReactApp.Server.Services.UserService
+namespace API.Server.Interfaces
 {
-    public interface IUserService
+    public interface IUserRepository
     {
         public Task<IEnumerable<User>> GetAllAsync();
 

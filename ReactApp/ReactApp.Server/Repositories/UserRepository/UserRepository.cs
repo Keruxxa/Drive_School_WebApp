@@ -1,14 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using API.Server.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using ReactApp.Server.Data;
 using ReactApp.Server.Models;
 
 namespace ReactApp.Server.Services.UserService
 {
-    public class UserService : IUserService
+    public class UserRepository : IUserRepository
     {
         private readonly UserDbContext _userDbContext;
 
-        public UserService(UserDbContext userDbContext)
+        public UserRepository(UserDbContext userDbContext)
         {
             _userDbContext = userDbContext;
         }

@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using API.Server.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using ReactApp.Server.Models;
-using ReactApp.Server.Services.UserService;
 
 namespace ReactApp.Server.Controllers
 {
@@ -8,9 +8,9 @@ namespace ReactApp.Server.Controllers
     [Route("[controller]")]
     public class UserController : Controller
     {
-        private readonly IUserService _userService;
+        private readonly IUserRepository _userService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserRepository userService)
         {
             _userService = userService;
         }
