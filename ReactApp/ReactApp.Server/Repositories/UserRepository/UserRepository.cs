@@ -25,11 +25,11 @@ namespace ReactApp.Server.Services.UserService
             return await _userDbContext.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task AddAsync(User user)
+        public async Task<bool> AddAsync(User user)
         {
             await _userDbContext.Users.AddAsync(user);
 
-            await _userDbContext.SaveChangesAsync();
+            return await SaveAsync();
         }
 
         public async Task Delete(Guid id)
@@ -40,11 +40,17 @@ namespace ReactApp.Server.Services.UserService
             await _userDbContext.SaveChangesAsync();
         }
 
-        public async Task Update(User user)
+        public async Task<bool> Update(User user)
         {
             _userDbContext.Users.Update(user);
 
-            await _userDbContext.SaveChangesAsync();
+            return await SaveAsync();
+        }
+
+        public async Task<bool> SaveAsync()
+        {
+            var saved = await _userDbContext.SaveChangesAsync();
+            return saved > 0 ? true : false;
         }
     }
 }

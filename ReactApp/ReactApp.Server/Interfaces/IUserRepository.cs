@@ -8,10 +8,12 @@ namespace API.Server.Interfaces
 
         public Task<User> GetByIdAsync(Guid id);
 
-        public Task AddAsync(User user);
+        public Task<bool> AddAsync(User user);
 
-        public Task Update(User user);
+        public Task<bool> Update(User user);
 
         public Task Delete(Guid id);
+
+        public Task<bool> SaveAsync();
     }
 }
