@@ -1,7 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace API.Server.Models
+﻿namespace API.Server.Models
 {
     public class Student : Person
     {

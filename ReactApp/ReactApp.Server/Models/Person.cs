@@ -10,11 +10,11 @@ namespace API.Server.Models
 
         [Required(ErrorMessage = "Поле обязательно для заполнения!")]
         [Column(TypeName = "nvarchar(50)")]
-        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
         [Required(ErrorMessage = "Поле обязательно для заполнения!")]
         [Column(TypeName = "nvarchar(50)")]
-        public string LastName { get; set; }
+        public string FirstName { get; set; }
 
         [Range(16, int.MaxValue, ErrorMessage = "Возраст обучающегося не может быть меньше 16 лет!")]
         public int? Age { get; set; }

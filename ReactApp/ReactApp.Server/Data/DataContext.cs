@@ -4,20 +4,20 @@ using ReactApp.Server.Models;
 
 namespace ReactApp.Server.Data
 {
-    public class UserDbContext : DbContext
+    public class DataContext : DbContext
     {
-        public UserDbContext(DbContextOptions<UserDbContext> options)
+        public DataContext(DbContextOptions<DataContext> options)
             : base(options) { }
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Student> Student { get; set; }
+        public DbSet<Student> Students { get; set; }
 
         public DbSet<Teacher> Teachers { get; set; }
 
         public DbSet<Group> Groups { get; set; }
 
-        public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         public DbSet<Car> Cars { get; set; }
 

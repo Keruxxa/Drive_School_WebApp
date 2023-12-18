@@ -11,7 +11,7 @@ using ReactApp.Server.Data;
 
 namespace API.Server.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20231217062800_Changed datetime for exams")]
     partial class Changeddatetimeforexams
     {

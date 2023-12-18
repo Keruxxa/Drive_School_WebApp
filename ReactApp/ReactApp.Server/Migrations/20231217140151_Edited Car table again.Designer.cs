@@ -12,8 +12,8 @@ using ReactApp.Server.Data;
 namespace API.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231217062228_Edited Group Table")]
-    partial class EditedGroupTable
+    [Migration("20231217140151_Edited Car table again")]
+    partial class EditedCartableagain
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,10 +38,10 @@ namespace API.Server.Migrations
                         .HasMaxLength(6)
                         .HasColumnType("nvarchar(6)");
 
-                    b.Property<int>("StudentId")
+                    b.Property<int?>("StudentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TeacherId")
+                    b.Property<int?>("TeacherId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -94,14 +94,14 @@ namespace API.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.HasKey("Id");
 
                     b.ToTable("PracticalExams");
                 });
 
-            modelBuilder.Entity("API.Server.Models.Rating", b =>
+            modelBuilder.Entity("API.Server.Models.Review", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -125,7 +125,7 @@ namespace API.Server.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Ratings");
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("API.Server.Models.Student", b =>
@@ -167,7 +167,7 @@ namespace API.Server.Migrations
 
                     b.HasIndex("TheoryExamId");
 
-                    b.ToTable("Student");
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("API.Server.Models.Teacher", b =>
@@ -206,7 +206,7 @@ namespace API.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.HasKey("Id");
 
@@ -240,15 +240,11 @@ namespace API.Server.Migrations
                 {
                     b.HasOne("API.Server.Models.Student", "Student")
                         .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StudentId");
 
                     b.HasOne("API.Server.Models.Teacher", "Teacher")
                         .WithMany()
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TeacherId");
 
                     b.Navigation("Student");
 
@@ -262,7 +258,7 @@ namespace API.Server.Migrations
                         .HasForeignKey("TeacherId");
                 });
 
-            modelBuilder.Entity("API.Server.Models.Rating", b =>
+            modelBuilder.Entity("API.Server.Models.Review", b =>
                 {
                     b.HasOne("API.Server.Models.Student", "Student")
                         .WithMany()

@@ -1,18 +1,28 @@
 using API.Server.Interfaces;
+using API.Server.Repositories;
 using Microsoft.EntityFrameworkCore;
 using ReactApp.Server.Data;
-using ReactApp.Server.Services.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("UserDbContextConnection");
+var connectionString = builder.Configuration.GetConnectionString("DriveSchoolDbContextConnection");
 
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<IUserRepository, UserRepository>();
-builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICarRepository, CarRepository>();
+builder.Services.AddScoped<IGroupRepository, GroupRepository>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+builder.Services.AddScoped<ITheoryExamRepository, TheoryExamRepository>();
+builder.Services.AddScoped<IPracticalExamRepository, PracticalExamRepository>();
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddCors(options => options.AddPolicy(name: "UsersOrigins",
     policy =>

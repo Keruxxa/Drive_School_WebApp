@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using ReactApp.Server.Data;
 using ReactApp.Server.Models;
 
-namespace ReactApp.Server.Services.UserService
+namespace API.Server.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly UserDbContext _userDbContext;
+        private readonly DataContext _userDbContext;
 
-        public UserRepository(UserDbContext userDbContext)
+        public UserRepository(DataContext userDbContext)
         {
             _userDbContext = userDbContext;
         }

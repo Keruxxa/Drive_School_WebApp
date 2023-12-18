@@ -4,16 +4,16 @@ namespace API.Server.Interfaces
 {
     public interface IUserRepository
     {
-        public Task<IEnumerable<User>> GetAllAsync();
+        Task<IEnumerable<User>> GetAllAsync();
 
-        public Task<User> GetByIdAsync(Guid id);
+        Task<User> GetByIdAsync(Guid id);
 
-        public Task<bool> AddAsync(User user);
+        Task<bool> AddAsync(User user);
 
-        public Task<bool> Update(User user);
+        Task<bool> Update(User user);
 
-        public Task Delete(Guid id);
+        Task Delete(Guid id);
 
-        public Task<bool> SaveAsync();
+        Task<bool> SaveAsync();
     }
 }

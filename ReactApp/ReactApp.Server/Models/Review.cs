@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Server.Models
 {
-    public class Rating
+    public class Review
     {
         [Key]
         public int Id { get; set; }

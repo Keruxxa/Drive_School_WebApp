@@ -138,3 +138,5 @@ C:\Users\k-pas\OneDrive\Рабочий стол\Languages\ASP.NET\ASP.NET-React-
 C:\Users\k-pas\OneDrive\Рабочий стол\Languages\ASP.NET\ASP.NET-React-WebApp\ReactApp\ReactApp.Server\obj\Debug\net8.0\API.Server.pdb
 C:\Users\k-pas\OneDrive\Рабочий стол\Languages\ASP.NET\ASP.NET-React-WebApp\ReactApp\ReactApp.Server\obj\Debug\net8.0\API.Server.genruntimeconfig.cache
 C:\Users\k-pas\OneDrive\Рабочий стол\Languages\ASP.NET\ASP.NET-React-WebApp\ReactApp\ReactApp.Server\obj\Debug\net8.0\ref\API.Server.dll
+C:\Users\k-pas\OneDrive\Рабочий стол\Languages\ASP.NET\ASP.NET-React-WebApp\ReactApp\ReactApp.Server\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\k-pas\OneDrive\Рабочий стол\Languages\ASP.NET\ASP.NET-React-WebApp\ReactApp\ReactApp.Server\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
