@@ -17,7 +17,6 @@ namespace API.Server.Controllers
         {
             _studentRepository = studentRepository;
             _mapper = mapper;
-
         }
 
 
@@ -25,14 +24,13 @@ namespace API.Server.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Student>))]
         public async Task<IActionResult> GetStudents()
         {
-            var studentsCollection = await _studentRepository.GetStudentsAsync();
-            var students = studentsCollection.ToList(); ;
+            var students = await _studentRepository.GetStudentsAsync();
 
             var studentsMapped = _mapper.Map<List<StudentDto>>(students);
 
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
             return Ok(studentsMapped);

@@ -49,6 +49,18 @@ namespace API.Server.Repositories
 
         public async Task<bool> SaveAsync()
         {
+            foreach (var entry in _context.ChangeTracker.Entries<Teacher>())
+            {
+                if (entry.State == EntityState.Added || entry.State == EntityState.Modified)
+                {
+                    var teacher = entry.Entity;
+
+                    if (teacher.Experience < 5)
+                    {
+                        return false;
+                    }
+                }
+            }
             var saved = await _context.SaveChangesAsync();
             return saved > 0;
         }
