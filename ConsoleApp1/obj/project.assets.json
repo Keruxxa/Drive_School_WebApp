@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP.NET-React-WebApp\\ConsoleApp1\\XConsoleApp1.csproj",
+      "projectUniqueName": "D:\\Projects\\DriveSchool\\ConsoleApp1\\XConsoleApp1.csproj",
       "projectName": "XConsoleApp1",
-      "projectPath": "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP.NET-React-WebApp\\ConsoleApp1\\XConsoleApp1.csproj",
+      "projectPath": "D:\\Projects\\DriveSchool\\ConsoleApp1\\XConsoleApp1.csproj",
       "packagesPath": "C:\\Users\\k-pas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP.NET-React-WebApp\\ConsoleApp1\\obj\\",
+      "outputPath": "D:\\Projects\\DriveSchool\\ConsoleApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\k-pas\\AppData\\Roaming\\NuGet\\NuGet.Config",

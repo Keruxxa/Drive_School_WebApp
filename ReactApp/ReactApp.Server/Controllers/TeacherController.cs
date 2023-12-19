@@ -71,7 +71,8 @@ namespace API.Server.Controllers
 
             ICollection<Teacher> teachers = await _teacherRepository.GetTeachersAsync();
 
-            var teacherToCheck = teachers.Where(t => t.LastName == teacher.LastName && t.FirstName == teacher.FirstName)
+            var teacherToCheck = teachers.Where(t => string.Equals(t.LastName, teacher.LastName) &&
+                                                     string.Equals(t.FirstName, teacher.FirstName))
                                          .FirstOrDefault();
 
             if (teacherToCheck != null)

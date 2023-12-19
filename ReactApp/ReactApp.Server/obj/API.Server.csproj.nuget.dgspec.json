@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP.NET-React-WebApp\\ReactApp\\ReactApp.Server\\API.Server.csproj": {}
+    "D:\\Projects\\DriveSchool\\ReactApp\\ReactApp.Server\\API.Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP.NET-React-WebApp\\ReactApp\\ReactApp.Server\\API.Server.csproj": {
+    "D:\\Projects\\DriveSchool\\ReactApp\\ReactApp.Server\\API.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP.NET-React-WebApp\\ReactApp\\ReactApp.Server\\API.Server.csproj",
+        "projectUniqueName": "D:\\Projects\\DriveSchool\\ReactApp\\ReactApp.Server\\API.Server.csproj",
         "projectName": "API.Server",
-        "projectPath": "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP.NET-React-WebApp\\ReactApp\\ReactApp.Server\\API.Server.csproj",
+        "projectPath": "D:\\Projects\\DriveSchool\\ReactApp\\ReactApp.Server\\API.Server.csproj",
         "packagesPath": "C:\\Users\\k-pas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP.NET-React-WebApp\\ReactApp\\ReactApp.Server\\obj\\",
+        "outputPath": "D:\\Projects\\DriveSchool\\ReactApp\\ReactApp.Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\k-pas\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Server", "ReactApp\ReactApp.Server\API.Server.csproj", "{5B1E58D4-AC7C-4669-8E10-E61D3E763369}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "reactapp.client", "ReactApp\reactapp.client\reactapp.client.esproj", "{95F27182-DE0C-4B24-B6DD-3EE1500445A2}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ReactApp.Client", "ReactApp\reactapp.client\ReactApp.Client.esproj", "{95F27182-DE0C-4B24-B6DD-3EE1500445A2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XConsoleApp1", "ConsoleApp1\XConsoleApp1.csproj", "{57757458-ED60-4D6C-AF8E-B184F006B291}"
 EndProject
@@ -16,8 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagram", "Diagram", "{ED8F51B0-0A38-4E17-A1FE-9ABAAB17FCBE}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\..\Downloads\Diagram.drawio = ..\..\..\..\..\Downloads\Diagram.drawio
-		..\..\..\..\..\Downloads\Diagram.png = ..\..\..\..\..\Downloads\Diagram.png
+		..\..\..\Downloads\Diagram.drawio = ..\..\..\Downloads\Diagram.drawio
+		..\..\..\Downloads\Diagram.png = ..\..\..\Downloads\Diagram.png
 	EndProjectSection
 EndProject
 Global

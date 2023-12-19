@@ -1,15 +1,15 @@
 {
   "Version": 1,
-  "Hash": "NK5J8fJh04knHbcwucXxny+cs6Fc9CUtp9DYj+UATwU=",
+  "Hash": "thmGlwV9XlB/LB4flCMgx5PswrkU7v7Kui7uG4kjZK0=",
   "Source": "API.Server",
   "BasePath": "_content/API.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP.NET-React-WebApp\\ReactApp\\reactapp.client\\reactapp.client.esproj",
+      "Identity": "D:\\Projects\\DriveSchool\\ReactApp\\reactapp.client\\ReactApp.Client.esproj",
       "Version": 2,
-      "Source": "reactapp.client",
+      "Source": "ReactApp.Client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
       "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
       "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",

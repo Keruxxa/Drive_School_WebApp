@@ -1,3 +1,6 @@
 C:\Users\k-pas\OneDrive\Рабочий стол\Languages\ASP.NET\ReactApp\reactapp.client\obj\Debug\reactapp.client.esproj.CoreCompileInputs.cache
 C:\Users\k-pas\OneDrive\Рабочий стол\Languages\ASP.NET\ASP_NET_WebApplication\ReactApp\reactapp.client\obj\Debug\reactapp.client.esproj.CoreCompileInputs.cache
 C:\Users\k-pas\OneDrive\Рабочий стол\Languages\ASP.NET\ASP.NET-React-WebApp\ReactApp\reactapp.client\obj\Debug\reactapp.client.esproj.CoreCompileInputs.cache
+D:\Languages\ASP.NET\ASP.NET-React-WebApp\ReactApp\reactapp.client\obj\Debug\reactapp.client.esproj.CoreCompileInputs.cache
+D:\Projects\ASP.NET\DriveSchool\ReactApp\reactapp.client\obj\Debug\reactapp.client.esproj.CoreCompileInputs.cache
+D:\Projects\DriveSchool\ReactApp\reactapp.client\obj\Debug\ReactApp.Client.esproj.CoreCompileInputs.cache

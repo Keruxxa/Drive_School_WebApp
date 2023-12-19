@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:5173",
 "RedirectUrl": "",
 "LaunchCommand": "npm run dev",
-"WorkingDirectory": "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP.NET-React-WebApp\\ReactApp\\ReactApp.Server\\..\\reactapp.client",
+"WorkingDirectory": "D:\\Projects\\DriveSchool\\ReactApp\\ReactApp.Server\\..\\reactapp.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

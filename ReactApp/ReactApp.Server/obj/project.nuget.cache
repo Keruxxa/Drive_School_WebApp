@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "x0mXOpwbvesJ466WUnK2FD8nw7GLznIXcA4G/DzHWMe9c50+2YcUL2OUY8uJk3K4c7n307B0Azif4zg14CR4Kw==",
+  "dgSpecHash": "0czUW+36Fm2UDPMSvpRtif0hrdPCHAvkkau/bw+ZWmAaYcoQqZRz/FxIH7Bd1c65yPNZY/7ozaFyGO2hT1Ae+w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\k-pas\\OneDrive\\Рабочий стол\\Languages\\ASP.NET\\ASP.NET-React-WebApp\\ReactApp\\ReactApp.Server\\API.Server.csproj",
+  "projectFilePath": "D:\\Projects\\DriveSchool\\ReactApp\\ReactApp.Server\\API.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\k-pas\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\k-pas\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
