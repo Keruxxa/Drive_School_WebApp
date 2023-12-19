@@ -1,44 +1,57 @@
-import { Component, useEffect, useState } from 'react'
-import axios from 'axios'
-import UserList from './components/UserList'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import UserForm from './components/UserForm'
+import { BrowserRouter, Link } from 'react-router-dom'
+import AppRoutes from './components/AppRoutes'
 
 function App() {
-   const [users, setUsers] = useState([])
-   const [isUsersLoading, setIsUsersLoading] = useState(false)
-
-   const API_URL = 'https://localhost:7117'
-
-   async function fetchUsers() {
-      setIsUsersLoading(true)
-      const response = await axios.get(API_URL + '/User/GetAll')
-      setUsers(response.data)
-      setIsUsersLoading(false)
-   }
-
-   useEffect(() => {
-      fetchUsers()
-   }, [])
-
-   const addNewUser = (newUser) => {
-      setUsers([...users, newUser])
-   }
-
    return (
-      <div className="container">
-         <UserForm create={addNewUser} />
-         {
-            users.length
-               ?
-               <UserList users={users} />
+      <BrowserRouter>
+         <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+            <div className="container-fluid">
+               <button
+                  className="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarColor01"
+                  aria-controls="navbarColor01"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+               >
+                  <span className="navbar-toggler-icon"></span>
+               </button>
+               <div className="container">
+                  <div className="collapse navbar-collapse" id="navbarColor01">
+                     <ul className="navbar-nav me-auto">
+                        <li className="nav-item">
+                           <Link className="nav-link" to="/home">
+                              Главная
+                              <span className="visually-hidden">(current)</span>
+                           </Link>
+                        </li>
+                        <li className="nav-item">
+                           <Link className="nav-link" to="/teachers">
+                              Преподаватели
+                           </Link>
+                        </li>
+                        <li className="nav-item">
+                           <Link className="nav-link" to="/groups">
+                              Группы
+                           </Link>
+                        </li>
+                        <li className="nav-item">
+                           <Link className="nav-link" to="/about">
+                              Справка
+                           </Link>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </nav>
 
-               :
-               <h1 style={{ textAlign: 'center' }}>
-                  Список пользоваетелей пуст
-               </h1>
-         }
-      </div>
+         <div className="container">
+            <AppRoutes />
+         </div>
+      </BrowserRouter>
    )
 }
 

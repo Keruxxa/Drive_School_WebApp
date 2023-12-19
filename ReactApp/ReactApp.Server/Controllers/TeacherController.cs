@@ -20,7 +20,7 @@ namespace API.Server.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Teacher>))]
         public async Task<IActionResult> GetTeachers()
         {

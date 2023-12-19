@@ -9,6 +9,10 @@ namespace API.Server.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Поле обязательно к заполнению!")]
+        [Column(TypeName = "nvarchar(50)")]
+        public string Mark { get; set; }
+
+        [Required(ErrorMessage = "Поле обязательно к заполнению!")]
         [Column(TypeName = "nvarchar(6)")]
         [StringLength(6, ErrorMessage = "Длина госномера состоит из 6 символов")]
         public string StateNumber { get; set; }
