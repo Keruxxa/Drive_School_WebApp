@@ -19,21 +19,23 @@ namespace API.Server.Controllers
             _mapper = mapper;
         }
 
+
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Car>))]
         public async Task<IActionResult> GetCars()
         {
             var cars = await _carRepository.GetCarsAsync();
 
-            var carsMapped = _mapper.Map<List<CarDto>>(cars);
+            var carsDto = _mapper.Map<List<CarDto>>(cars);
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            return Ok(carsMapped);
+            return Ok(carsDto);
         }
+
 
         [HttpGet("{carId}")]
         [ProducesResponseType(200, Type = typeof(Car))]
@@ -47,28 +49,28 @@ namespace API.Server.Controllers
 
             var car = await _carRepository.GetByIdAsync(carId);
 
-            var carMapped = _mapper.Map<CarDto>(car);
+            var carDto = _mapper.Map<CarDto>(car);
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            return Ok(carMapped);
+            return Ok(carDto);
         }
 
 
         [HttpPost("CreateCar")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateCar([FromBody] CarDto car)
+        public async Task<IActionResult> CreateCar([FromBody] CarDto carDto)
         {
-            if (car == null)
+            if (carDto == null)
             {
                 return BadRequest(ModelState);
             }
 
-            if (await _carRepository.CarExistsAsync(car.Id))
+            if (await _carRepository.CarExistsAsync(carDto.Id))
             {
                 ModelState.AddModelError("", "Машина уже существует!");
                 StatusCode(422, ModelState);
@@ -79,9 +81,9 @@ namespace API.Server.Controllers
                 return BadRequest(ModelState);
             }
 
-            var carMapped = _mapper.Map<Car>(car);
+            var car = _mapper.Map<Car>(carDto);
 
-            if (!await _carRepository.AddCarAsync(carMapped))
+            if (!await _carRepository.AddCarAsync(car))
             {
                 ModelState.AddModelError("", "Что-то пошло не так во время создания!");
                 return StatusCode(500, ModelState);

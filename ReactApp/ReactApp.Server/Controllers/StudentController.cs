@@ -20,21 +20,22 @@ namespace API.Server.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Student>))]
         public async Task<IActionResult> GetStudents()
         {
             var students = await _studentRepository.GetStudentsAsync();
 
-            var studentsMapped = _mapper.Map<List<StudentDto>>(students);
+            var studentsDto = _mapper.Map<List<StudentDto>>(students);
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            return Ok(studentsMapped);
+            return Ok(students);
         }
+
 
         [HttpGet("{studentId}")]
         [ProducesResponseType(200, Type = typeof(Student))]
@@ -47,14 +48,52 @@ namespace API.Server.Controllers
 
             var student = await _studentRepository.GetByIdAsync(studentId);
 
-            var studentMapped = _mapper.Map<StudentDto>(student);
+            var studentDto = _mapper.Map<StudentDto>(student);
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            return Ok(studentMapped);
+            return Ok(studentDto);
+        }
+
+
+        [HttpPost("CreateStudent")]
+        [ProducesResponseType(244)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> CreateStudent([FromQuery] int groupId, [FromBody] StudentDto studentDto)
+        {
+            if (studentDto == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var students = await _studentRepository.GetStudentsAsync();
+
+            var studentsToCheck = students.Where(s => s.LastName == studentDto.LastName &&
+                                                      s.FirstName == studentDto.FirstName).FirstOrDefault();
+
+            if (studentsToCheck != null)
+            {
+                ModelState.AddModelError("", "Студент уже существует!");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var student = _mapper.Map<Student>(studentDto);
+
+            if (!await _studentRepository.AddStudentAsync(student, groupId))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время создания!");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Студент успешно создан!");
         }
     }
 }

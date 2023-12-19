@@ -20,21 +20,30 @@ namespace API.Server.Repositories
             return await _context.Students.ToListAsync();
         }
 
+
         public async Task<Student> GetByIdAsync(int studentId)
         {
             return await _context.Students.Where(s => s.Id == studentId).FirstOrDefaultAsync();
         }
+
 
         public async Task<bool> StudentExistsAsync(int studentId)
         {
             return await _context.Students.AnyAsync(s => s.Id == studentId);
         }
 
-        public async Task<bool> AddStudentAsync(Student student)
+
+        public async Task<bool> AddStudentAsync(Student student, int groupId)
         {
-            await _context.Students.AddAsync(student);
+            var group = await _context.Groups.Where(g => g.Id == groupId).FirstOrDefaultAsync();
+
+            student.Group = group;
+
+            await _context.AddAsync(student);
+
             return await SaveAsync();
         }
+
 
         public async Task<bool> DeleteStudentAsync(Student student)
         {
@@ -42,11 +51,13 @@ namespace API.Server.Repositories
             return await SaveAsync();
         }
 
+
         public async Task<bool> UpdateStudentAsync(Student student)
         {
             _context.Students.Update(student);
             return await SaveAsync();
         }
+
 
         public async Task<bool> SaveAsync()
         {

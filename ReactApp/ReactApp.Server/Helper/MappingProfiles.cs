@@ -9,12 +9,16 @@ namespace API.Server.Helper
         public MappingProfiles()
         {
             CreateMap<Student, StudentDto>();
+            CreateMap<StudentDto, Student>();
 
             CreateMap<Teacher, TeacherDto>();
             CreateMap<TeacherDto, Teacher>();
 
             CreateMap<Car, CarDto>();
             CreateMap<CarDto, Car>();
+
+            CreateMap<Group, GroupDto>();
+            CreateMap<GroupDto, Group>();
 
             CreateMap<TheoryExam, TheoryExamDto>();
             CreateMap<Review, ReviewDto>();

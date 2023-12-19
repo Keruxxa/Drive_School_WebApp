@@ -26,14 +26,14 @@ namespace API.Server.Controllers
         {
             var teachers = await _teacherRepository.GetTeachersAsync();
 
-            var teachersMapped = _mapper.Map<List<TeacherDto>>(teachers);
+            var teachersDto = _mapper.Map<List<TeacherDto>>(teachers);
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            return Ok(teachersMapped);
+            return Ok(teachersDto);
         }
 
         [HttpGet("{teacherId}")]
@@ -48,31 +48,31 @@ namespace API.Server.Controllers
 
             var teacher = await _teacherRepository.GetByIdAsync(teacherId);
 
-            var teacherMapped = _mapper.Map<TeacherDto>(teacher);
+            var teacherDto = _mapper.Map<TeacherDto>(teacher);
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            return Ok(teacherMapped);
+            return Ok(teacherDto);
         }
 
 
         [HttpPost("CreateTeacher")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateTeacher([FromBody] TeacherDto teacher)
+        public async Task<IActionResult> CreateTeacher([FromBody] TeacherDto teacherDto)
         {
-            if (teacher == null)
+            if (teacherDto == null)
             {
                 return BadRequest(ModelState);
             }
 
             ICollection<Teacher> teachers = await _teacherRepository.GetTeachersAsync();
 
-            var teacherToCheck = teachers.Where(t => string.Equals(t.LastName, teacher.LastName) &&
-                                                     string.Equals(t.FirstName, teacher.FirstName))
+            var teacherToCheck = teachers.Where(t => string.Equals(t.LastName, teacherDto.LastName) &&
+                                                     string.Equals(t.FirstName, teacherDto.FirstName))
                                          .FirstOrDefault();
 
             if (teacherToCheck != null)
@@ -86,9 +86,9 @@ namespace API.Server.Controllers
                 return BadRequest(ModelState);
             }
 
-            var teacherMapped = _mapper.Map<Teacher>(teacher);
+            var teacher = _mapper.Map<Teacher>(teacherDto);
 
-            if (!await _teacherRepository.AddTeacherAsync(teacherMapped))
+            if (!await _teacherRepository.AddTeacherAsync(teacher))
             {
                 ModelState.AddModelError("", "Что-то пошло не так во время создания!");
                 return StatusCode(500, ModelState);

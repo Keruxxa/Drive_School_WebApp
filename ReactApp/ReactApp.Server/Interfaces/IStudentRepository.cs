@@ -10,7 +10,7 @@ namespace API.Server.Interfaces
 
         Task<bool> StudentExistsAsync(int studentId);
 
-        Task<bool> AddStudentAsync(Student student);
+        Task<bool> AddStudentAsync(Student student, int groupId);
 
         Task<bool> UpdateStudentAsync(Student student);
 
