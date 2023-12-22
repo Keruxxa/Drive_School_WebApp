@@ -4,6 +4,7 @@ using API.Server.Models;
 using API.Server.Repositories;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace API.Server.Controllers
 {
@@ -57,6 +58,42 @@ namespace API.Server.Controllers
             }
 
             return Ok(practicalExamMapped);
+        }
+
+
+        [HttpPost("CreatePracticalExam")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> CreateParcticalExam([FromBody] PracticalExamDto examDto)
+        {
+            if (examDto == null)
+            {
+                BadRequest(ModelState);
+            }
+
+            ICollection<PracticalExam> exams = await _practicalExamRepository.GetPracticalExamsAsync();
+
+            var examsCheck = exams.Where(e => e.Date == examDto.Date).FirstOrDefault();
+
+            if (examsCheck != null)
+            {
+                ModelState.AddModelError("", "Экзамен на эту дату уже существует!");
+                return StatusCode(244, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var exam = _mapper.Map<PracticalExam>(examDto);
+
+            if (!await _practicalExamRepository.AddPracticalExamAsync(exam))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время создания!");
+            }
+
+            return Ok("Экзамен успешно создан!");
         }
     }
 }

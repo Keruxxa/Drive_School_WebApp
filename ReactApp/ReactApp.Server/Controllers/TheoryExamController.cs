@@ -1,7 +1,6 @@
 ﻿using API.Server.Dto;
 using API.Server.Interfaces;
 using API.Server.Models;
-using API.Server.Repositories;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -58,6 +57,42 @@ namespace API.Server.Controllers
             }
 
             return Ok(theoryExamMapped);
+        }
+
+
+        [HttpPost("CreateTheoryExam")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> CreateTheoryExam([FromBody] TheoryExamDto examDto)
+        {
+            if (examDto == null)
+            {
+                BadRequest(ModelState);
+            }
+
+            ICollection<TheoryExam> exams = await _theoryExamRepository.GetTheoryExamsAsync();
+
+            var examsCheck = exams.Where(e => e.Date == examDto.Date).FirstOrDefault();
+
+            if (examsCheck != null)
+            {
+                ModelState.AddModelError("", "Экзамен на эту дату уже существует!");
+                return StatusCode(244, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var exam = _mapper.Map<TheoryExam>(examDto);
+
+            if (!await _theoryExamRepository.AddTheoryExamAsync(exam))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время создания!");
+            }
+
+            return Ok("Экзамен успешно создан!");
         }
     }
 }

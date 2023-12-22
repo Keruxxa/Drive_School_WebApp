@@ -57,5 +57,32 @@ namespace API.Server.Controllers
 
             return Ok(reviewMapped);
         }
+
+
+        [HttpPost("CreateReview")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> CreateReview([FromBody] ReviewDto reviewDto)
+        {
+            if (reviewDto == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var review = _mapper.Map<Review>(reviewDto);
+
+            if (!await _reviewRepository.AddReviewAsync(review))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время создания!");
+                return StatusCode(422, ModelState);
+            }
+
+            return Ok("Отзыв успешно добавлен!");
+        }
     }
 }

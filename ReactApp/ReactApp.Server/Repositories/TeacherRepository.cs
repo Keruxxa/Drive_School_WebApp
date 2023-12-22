@@ -26,7 +26,7 @@ namespace API.Server.Repositories
 
         public async Task<bool> TeacherExistsAsync(int teacherId)
         {
-            return await _context.Reviews.AnyAsync(t => t.Id == teacherId);
+            return await _context.Teachers.AnyAsync(t => t.Id == teacherId);
         }
 
         public async Task<bool> AddTeacherAsync(Teacher teacher)

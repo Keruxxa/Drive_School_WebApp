@@ -21,8 +21,13 @@ namespace API.Server.Helper
             CreateMap<GroupDto, Group>();
 
             CreateMap<TheoryExam, TheoryExamDto>();
-            CreateMap<Review, ReviewDto>();
+            CreateMap<TheoryExamDto, TheoryExam>();
+
             CreateMap<PracticalExam, PracticalExamDto>();
+            CreateMap<PracticalExamDto, PracticalExam>();
+
+            CreateMap<Review, ReviewDto>();
+            CreateMap<ReviewDto, Review>();
         }
     }
 }
