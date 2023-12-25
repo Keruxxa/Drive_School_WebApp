@@ -19,7 +19,7 @@ namespace API.Server.Repositories
             return await _context.Teachers.ToListAsync();
         }
 
-        public async Task<Teacher> GetByIdAsync(int teacherId)
+        public async Task<Teacher> GetTeacherByIdAsync(int teacherId)
         {
             return await _context.Teachers.Where(t => t.Id == teacherId).FirstOrDefaultAsync();
         }

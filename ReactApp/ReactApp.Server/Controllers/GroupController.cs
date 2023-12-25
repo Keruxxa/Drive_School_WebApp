@@ -46,7 +46,7 @@ namespace API.Server.Controllers
                 return NotFound();
             }
 
-            var group = await _groupRepository.GetByIdAsync(groupId);
+            var group = await _groupRepository.GetGroupByIdAsync(groupId);
 
             var groupDto = _mapper.Map<GroupDto>(group);
 
@@ -97,6 +97,67 @@ namespace API.Server.Controllers
             }
 
             return Ok("Группа успешно создана!");
+        }
+
+
+        [HttpPut("{groupId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> UpdateGroup(int groupId, [FromBody] GroupDto groupDto)
+        {
+            if (groupDto == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (groupId != groupDto.Id)
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var group = _mapper.Map<Group>(groupDto);
+
+            if (!await _groupRepository.UpdateGroupAsync(group))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время обновления информации!");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Информация о группе успешно обновлена!");
+        }
+
+
+        [HttpDelete("{groupId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> DeleteGroup(int groupId)
+        {
+            if (!await _groupRepository.GroupExistsAsync(groupId))
+            {
+                return NotFound();
+            }
+
+            var group = await _groupRepository.GetGroupByIdAsync(groupId);
+
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время удаления группы!");
+            }
+
+            if (!await _groupRepository.DeleteGroupAsync(group))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время удаления группы!");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Группа успешно удалена!");
         }
     }
 }

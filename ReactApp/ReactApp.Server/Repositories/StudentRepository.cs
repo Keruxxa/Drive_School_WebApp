@@ -21,7 +21,7 @@ namespace API.Server.Repositories
         }
 
 
-        public async Task<Student> GetByIdAsync(int studentId)
+        public async Task<Student> GetStudentByIdAsync(int studentId)
         {
             return await _context.Students.Where(s => s.Id == studentId).FirstOrDefaultAsync();
         }
@@ -52,9 +52,14 @@ namespace API.Server.Repositories
         }
 
 
-        public async Task<bool> UpdateStudentAsync(Student student)
+        public async Task<bool> UpdateStudentAsync(Student student, int groupId)
         {
+            var group = await _context.Groups.Where(g => g.Id == groupId).FirstOrDefaultAsync();
+
+            student.Group = group;
+
             _context.Students.Update(student);
+
             return await SaveAsync();
         }
 

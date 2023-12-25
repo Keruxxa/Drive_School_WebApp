@@ -20,7 +20,7 @@ namespace API.Server.Repositories
             return await _context.Groups.ToListAsync();
         }
 
-        public async Task<Group> GetByIdAsync(int groupId)
+        public async Task<Group> GetGroupByIdAsync(int groupId)
         {
             return await _context.Groups.Where(g => g.Id == groupId).FirstOrDefaultAsync();
         }

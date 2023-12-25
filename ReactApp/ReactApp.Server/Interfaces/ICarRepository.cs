@@ -6,7 +6,7 @@ namespace API.Server.Interfaces
     {
         Task<ICollection<Car>> GetCarsAsync();
 
-        Task<Car> GetByIdAsync(int carId);
+        Task<Car> GetCarByIdAsync(int carId);
 
         Task<bool> CarExistsAsync(int carId);
 

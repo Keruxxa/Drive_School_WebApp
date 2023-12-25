@@ -6,7 +6,7 @@ namespace API.Server.Interfaces
     {
         Task<ICollection<TheoryExam>> GetTheoryExamsAsync();
 
-        Task<TheoryExam> GetByIdAsync(int theoryExamId);
+        Task<TheoryExam> GetTheoryExamByIdAsync(int theoryExamId);
 
         Task<bool> TheoryExamExistsAsync(int theoryExamId);
 

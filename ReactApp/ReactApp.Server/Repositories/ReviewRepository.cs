@@ -20,7 +20,7 @@ namespace API.Server.Repositories
             return await _context.Reviews.ToListAsync();
         }
 
-        public async Task<Review> GetByIdAsync(int reviewId)
+        public async Task<Review> GetReviewByIdAsync(int reviewId)
         {
             return await _context.Reviews.Where(r => r.Id == reviewId).FirstOrDefaultAsync();
         }
@@ -30,9 +30,17 @@ namespace API.Server.Repositories
             return await _context.Reviews.AnyAsync(r => r.Id == reviewId);
         }
 
-        public async Task<bool> AddReviewAsync(Review review)
+        public async Task<bool> AddReviewAsync(Review review, int studentId, int teacherId)
         {
+            var student = await _context.Students.Where(s => s.Id == studentId).FirstOrDefaultAsync();
+
+            var teacher = await _context.Teachers.Where(t => t.Id == teacherId).FirstOrDefaultAsync();
+
+            review.Student = student;
+            review.Teacher = teacher;
+
             await _context.Reviews.AddAsync(review);
+
             return await SaveAsync();
         }
 
@@ -42,9 +50,17 @@ namespace API.Server.Repositories
             return await SaveAsync();
         }
 
-        public async Task<bool> UpdateReviewAsync(Review review)
+        public async Task<bool> UpdateReviewAsync(Review review, int studentId, int teacherId)
         {
+            var student = await _context.Students.Where(s => s.Id == studentId).FirstOrDefaultAsync();
+
+            var teacher = await _context.Teachers.Where(t => t.Id == teacherId).FirstOrDefaultAsync();
+
+            review.Student = student;
+            review.Teacher = teacher;
+
             _context.Reviews.Update(review);
+
             return await SaveAsync();
         }
 

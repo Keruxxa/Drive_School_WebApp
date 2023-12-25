@@ -1,6 +1,7 @@
 ﻿using API.Server.Dto;
 using API.Server.Interfaces;
 using API.Server.Models;
+using API.Server.Repositories;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,7 +34,7 @@ namespace API.Server.Controllers
                 return BadRequest(ModelState);
             }
 
-            return Ok(students);
+            return Ok(studentsDto);
         }
 
 
@@ -46,7 +47,7 @@ namespace API.Server.Controllers
                 return NotFound();
             }
 
-            var student = await _studentRepository.GetByIdAsync(studentId);
+            var student = await _studentRepository.GetStudentByIdAsync(studentId);
 
             var studentDto = _mapper.Map<StudentDto>(student);
 
@@ -89,11 +90,74 @@ namespace API.Server.Controllers
 
             if (!await _studentRepository.AddStudentAsync(student, groupId))
             {
-                ModelState.AddModelError("", "Что-то пошло не так во время создания!");
+                ModelState.AddModelError("", "Что-то пошло не так во время создания студента!");
                 return StatusCode(500, ModelState);
             }
 
             return Ok("Студент успешно создан!");
+        }
+
+
+        [HttpPut("{studentId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> UpdateStudent([FromQuery] int studentId,
+                                                       [FromQuery] int groupId,
+                                                       [FromBody] StudentDto studentDto)
+        {
+            if (studentDto == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (studentId != studentDto.Id)
+            {
+                return NotFound();
+            }
+
+            if (!await _studentRepository.StudentExistsAsync(studentId))
+            {
+                return BadRequest(ModelState);
+            }
+
+            var student = _mapper.Map<Student>(studentDto);
+
+            if (!await _studentRepository.UpdateStudentAsync(student, groupId))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время обновления информации о студенте!");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Информация о студенте успешно обновлена!");
+        }
+
+
+        [HttpDelete("{studentId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> DeleteStudent(int studentId)
+        {
+            if (!await _studentRepository.StudentExistsAsync(studentId))
+            {
+                return NotFound();
+            }
+
+            var student = await _studentRepository.GetStudentByIdAsync(studentId);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!await _studentRepository.DeleteStudentAsync(student))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время удаления студента!");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Студент успешно удален!");
         }
     }
 }

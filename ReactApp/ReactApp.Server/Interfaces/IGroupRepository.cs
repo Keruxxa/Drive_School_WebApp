@@ -6,7 +6,7 @@ namespace API.Server.Interfaces
     {
         Task<ICollection<Group>> GetGroupsAsync();
 
-        Task<Group> GetByIdAsync(int groupId);
+        Task<Group> GetGroupByIdAsync(int groupId);
 
         Task<bool> GroupExistsAsync(int groupId);
 

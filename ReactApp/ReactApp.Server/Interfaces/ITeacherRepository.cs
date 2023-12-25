@@ -6,7 +6,7 @@ namespace API.Server.Interfaces
     {
         Task<ICollection<Teacher>> GetTeachersAsync();
 
-        Task<Teacher> GetByIdAsync(int teacherId);
+        Task<Teacher> GetTeacherByIdAsync(int teacherId);
 
         Task<bool> TeacherExistsAsync(int teacherId);
 

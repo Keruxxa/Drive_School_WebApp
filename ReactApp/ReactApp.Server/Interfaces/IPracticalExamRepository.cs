@@ -6,7 +6,7 @@ namespace API.Server.Interfaces
     {
         Task<ICollection<PracticalExam>> GetPracticalExamsAsync();
 
-        Task<PracticalExam> GetByIdAsync(int practicalExamId);
+        Task<PracticalExam> GetPracticalExamByIdAsync(int practicalExamId);
 
         Task<bool> PracticalExamExistsAsync(int practicalExamId);
 

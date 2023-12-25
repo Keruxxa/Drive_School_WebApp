@@ -20,7 +20,7 @@ namespace API.Server.Repositories
             return await _context.PracticalExams.ToListAsync();
         }
 
-        public async Task<PracticalExam> GetByIdAsync(int practicalExamId)
+        public async Task<PracticalExam> GetPracticalExamByIdAsync(int practicalExamId)
         {
             return await _context.PracticalExams.Where(p => p.Id == practicalExamId).FirstOrDefaultAsync();
         }

@@ -47,7 +47,7 @@ namespace API.Server.Controllers
                 return NotFound();
             }
 
-            var car = await _carRepository.GetByIdAsync(carId);
+            var car = await _carRepository.GetCarByIdAsync(carId);
 
             var carDto = _mapper.Map<CarDto>(car);
 
@@ -85,11 +85,76 @@ namespace API.Server.Controllers
 
             if (!await _carRepository.AddCarAsync(car))
             {
-                ModelState.AddModelError("", "Что-то пошло не так во время создания!");
+                ModelState.AddModelError("", "Что-то пошло не так во время создания машины!");
                 return StatusCode(500, ModelState);
             }
 
             return Ok("Машина успешно создана!");
+        }
+
+        [HttpPut("{carId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> UpdateCar(int carId, [FromBody] CarDto carDto)
+        {
+            if (carDto == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (carId != carDto.Id)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!await _carRepository.CarExistsAsync(carId))
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var car = _mapper.Map<Car>(carDto);
+
+            if (!await _carRepository.UpdateCarAsync(car))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время сохранения информации о машине!");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Информация о машине успешно обновлена!");
+        }
+
+
+        [HttpDelete("{carId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> DeleteCar(int carId)
+        {
+            if (!await _carRepository.CarExistsAsync(carId))
+            {
+                return NotFound();
+            }
+
+            var car = await _carRepository.GetCarByIdAsync(carId);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!await _carRepository.DeleteCarAsync(car))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время удаления машины!");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Машина успешно удалена!");
         }
     }
 }

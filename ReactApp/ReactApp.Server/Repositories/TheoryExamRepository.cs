@@ -19,7 +19,7 @@ namespace API.Server.Repositories
             return await _context.TheoryExams.ToListAsync();
         }
 
-        public async Task<TheoryExam> GetByIdAsync(int theoryExamId)
+        public async Task<TheoryExam> GetTheoryExamByIdAsync(int theoryExamId)
         {
             return await _context.TheoryExams.Where(t => t.Id == theoryExamId).FirstOrDefaultAsync();
         }

@@ -4,7 +4,6 @@ using API.Server.Models;
 using API.Server.Repositories;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Query;
 
 namespace API.Server.Controllers
 {
@@ -22,7 +21,7 @@ namespace API.Server.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<TheoryExam>))]
         public async Task<IActionResult> GetPracticalExams()
         {
@@ -48,7 +47,7 @@ namespace API.Server.Controllers
                 return NotFound();
             }
 
-            var practicalExam = await _practicalExamRepository.GetByIdAsync(practicalExamId);
+            var practicalExam = await _practicalExamRepository.GetPracticalExamByIdAsync(practicalExamId);
 
             var practicalExamMapped = _mapper.Map<PracticalExamDto>(practicalExam);
 
@@ -90,10 +89,71 @@ namespace API.Server.Controllers
 
             if (!await _practicalExamRepository.AddPracticalExamAsync(exam))
             {
-                ModelState.AddModelError("", "Что-то пошло не так во время создания!");
+                ModelState.AddModelError("", "Что-то пошло не так во время создания экзамена!");
             }
 
             return Ok("Экзамен успешно создан!");
+        }
+
+
+        [HttpPut("{practicalExamId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> UpdateGroup(int practicalExamId, [FromBody] PracticalExamDto practicalExamDto)
+        {
+            if (practicalExamDto == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (practicalExamId != practicalExamDto.Id)
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var practicalExam = _mapper.Map<PracticalExam>(practicalExamDto);
+
+            if (!await _practicalExamRepository.UpdatePracticalExamAsync(practicalExam))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время обновления информации об экзамене!");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+
+        [HttpDelete("{practicalExamId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> DeletePracticalExam(int practicalExamId)
+        {
+            if (!await _practicalExamRepository.PracticalExamExistsAsync(practicalExamId))
+            {
+                return NotFound();
+            }
+
+            var practicalExam = await _practicalExamRepository.GetPracticalExamByIdAsync(practicalExamId);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!await _practicalExamRepository.DeletePracticalExamAsync(practicalExam))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время удаления экзамена!");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Экзамен успешно удален!");
         }
     }
 }

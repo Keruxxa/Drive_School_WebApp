@@ -20,7 +20,7 @@ namespace API.Server.Repositories
             return await _context.Cars.ToListAsync();
         }
 
-        public async Task<Car> GetByIdAsync(int carId)
+        public async Task<Car> GetCarByIdAsync(int carId)
         {
             return await _context.Cars.Where(c => c.Id == carId).FirstOrDefaultAsync();
         }
@@ -51,7 +51,7 @@ namespace API.Server.Repositories
         public async Task<bool> SaveAsync()
         {
             var saved = await _context.SaveChangesAsync();
-            return saved > 0 ? true : false;
+            return saved > 0;
         }
     }
 }

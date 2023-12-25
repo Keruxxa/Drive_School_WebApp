@@ -1,6 +1,7 @@
 ﻿using API.Server.Dto;
 using API.Server.Interfaces;
 using API.Server.Models;
+using API.Server.Repositories;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,7 +47,7 @@ namespace API.Server.Controllers
                 return NotFound();
             }
 
-            var teacher = await _teacherRepository.GetByIdAsync(teacherId);
+            var teacher = await _teacherRepository.GetTeacherByIdAsync(teacherId);
 
             var teacherDto = _mapper.Map<TeacherDto>(teacher);
 
@@ -95,6 +96,67 @@ namespace API.Server.Controllers
             }
 
             return Ok("Преподаватель успешно создан!");
+        }
+
+
+        [HttpPut("{teacherId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> UpdateStudent(int teacherId, [FromBody] TeacherDto teacherDto)
+        {
+            if (teacherDto == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (teacherId != teacherDto.Id)
+            {
+                return NotFound();
+            }
+
+            if (!await _teacherRepository.TeacherExistsAsync(teacherId))
+            {
+                return BadRequest(ModelState);
+            }
+
+            var teacher = _mapper.Map<Teacher>(teacherDto);
+
+            if (!await _teacherRepository.UpdateTeacherAsync(teacher))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время обновления информации о преподавателе!");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Информация о преподавателе успешно обновлена!");
+        }
+
+
+        [HttpDelete("{teacherId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> DeleteTeacher(int teacherId)
+        {
+            if (!await _teacherRepository.TeacherExistsAsync(teacherId))
+            {
+                return NotFound();
+            }
+
+            var review = await _teacherRepository.GetTeacherByIdAsync(teacherId);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!await _teacherRepository.DeleteTeacherAsync(review))
+            {
+                ModelState.AddModelError("", "Что-то пошло не так во время удаления преподавателя!");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Преподаватель успешно удален!");
         }
     }
 }

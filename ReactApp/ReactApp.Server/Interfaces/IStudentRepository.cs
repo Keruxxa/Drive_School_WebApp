@@ -6,13 +6,13 @@ namespace API.Server.Interfaces
     {
         Task<ICollection<Student>> GetStudentsAsync();
 
-        Task<Student> GetByIdAsync(int studentId);
+        Task<Student> GetStudentByIdAsync(int studentId);
 
         Task<bool> StudentExistsAsync(int studentId);
 
         Task<bool> AddStudentAsync(Student student, int groupId);
 
-        Task<bool> UpdateStudentAsync(Student student);
+        Task<bool> UpdateStudentAsync(Student student, int groupId);
 
         Task<bool> DeleteStudentAsync(Student student);
 
