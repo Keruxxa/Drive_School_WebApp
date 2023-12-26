@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import TeacherForm from '../components/TeacherForm'
 import TeachersList from '../components/TeacherList'
 
 const Teachers = () => {
@@ -19,12 +18,6 @@ const Teachers = () => {
    useEffect(() => {
       fetchTeachers()
    }, [])
-
-   const addNewTeacher = (newTeacher) => {
-      setTeachers([...teachers, newTeacher])
-   }
-
-   const addClick = () => {}
 
    return (
       <div>
