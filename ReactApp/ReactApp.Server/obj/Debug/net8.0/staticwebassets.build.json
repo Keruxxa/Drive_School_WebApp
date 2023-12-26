@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "thmGlwV9XlB/LB4flCMgx5PswrkU7v7Kui7uG4kjZK0=",
+  "Hash": "TEyek25bcj2gDYtx6xct4cHEm2mvifNH8aEuPoAIEIQ=",
   "Source": "API.Server",
   "BasePath": "_content/API.Server",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "ReactApp.Client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishProperties": "",
       "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildProperties": "",
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
     }
   ],

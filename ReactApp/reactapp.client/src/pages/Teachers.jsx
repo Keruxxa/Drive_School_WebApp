@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import TeacherForm from '../components/TeacherForm'
-import UserList from '../components/TeacherList'
+import TeachersList from '../components/TeacherList'
 
 const Teachers = () => {
    const [teachers, setTeachers] = useState([])
@@ -9,7 +9,7 @@ const Teachers = () => {
 
    const API_URL = 'https://localhost:7117'
 
-   const fetcрTeachers = async () => {
+   const fetchTeachers = async () => {
       setIsTeachersLoading(true)
       const response = await axios.get(API_URL + '/Teacher/GetAll')
       setTeachers(response.data)
@@ -17,26 +17,22 @@ const Teachers = () => {
    }
 
    useEffect(() => {
-      fetcрTeachers()
+      fetchTeachers()
    }, [])
 
-   const addNewUser = (newTeacher) => {
+   const addNewTeacher = (newTeacher) => {
       setTeachers([...teachers, newTeacher])
    }
 
+   const addClick = () => {}
+
    return (
       <div>
-         <TeacherForm create={addNewUser} />
-         {
-            teachers.length
-               ?
-               <UserList teachers={teachers} />
-
-               :
-               <h1 style={{ textAlign: 'center' }}>
-                  Список преподавателей пуст
-               </h1>
-         }
+         {teachers.length ? (
+            <TeachersList teachers={teachers} />
+         ) : (
+            <h1 style={{ textAlign: 'center' }}>Список преподавателей пуст</h1>
+         )}
       </div>
    )
 }

@@ -424,9 +424,9 @@ D:\Projects\ASP.NET\DriveSchool\ReactApp\ReactApp.Server\obj\Debug\net8.0\refint
 D:\Projects\ASP.NET\DriveSchool\ReactApp\ReactApp.Server\obj\Debug\net8.0\API.Server.pdb
 D:\Projects\ASP.NET\DriveSchool\ReactApp\ReactApp.Server\obj\Debug\net8.0\API.Server.genruntimeconfig.cache
 D:\Projects\ASP.NET\DriveSchool\ReactApp\ReactApp.Server\obj\Debug\net8.0\ref\API.Server.dll
+D:\Projects\DriveSchool\ReactApp\ReactApp.Server\bin\Debug\net8.0\spa.proxy.json
 D:\Projects\DriveSchool\ReactApp\ReactApp.Server\bin\Debug\net8.0\appsettings.Development.json
 D:\Projects\DriveSchool\ReactApp\ReactApp.Server\bin\Debug\net8.0\appsettings.json
-D:\Projects\DriveSchool\ReactApp\ReactApp.Server\bin\Debug\net8.0\spa.proxy.json
 D:\Projects\DriveSchool\ReactApp\ReactApp.Server\bin\Debug\net8.0\API.Server.exe
 D:\Projects\DriveSchool\ReactApp\ReactApp.Server\bin\Debug\net8.0\API.Server.deps.json
 D:\Projects\DriveSchool\ReactApp\ReactApp.Server\bin\Debug\net8.0\API.Server.runtimeconfig.json
