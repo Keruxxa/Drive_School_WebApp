@@ -1,6 +1,6 @@
 import Teacher from './Teacher'
 import { useState } from 'react'
-import Input from './UI/input/Input'
+import Input from '../UI/input/Input'
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
 
 const TeacherList = ({ teachers }) => {
@@ -24,7 +24,6 @@ const TeacherList = ({ teachers }) => {
 
    return (
       <div>
-         <h1 style={{ textAlign: 'center' }}>Список преподавателей</h1>
          <button className='btn btn-primary m-2 float-end' onClick={toggleModal}>
             Добавить преподавателя
          </button>

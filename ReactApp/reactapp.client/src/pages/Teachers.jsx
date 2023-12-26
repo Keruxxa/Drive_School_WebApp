@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import TeachersList from '../components/TeacherList'
+import TeachersList from '../components/Teachers/TeacherList'
+import Loading from '../components/UI/Loading/Loading'
 
 const Teachers = () => {
    const [teachers, setTeachers] = useState([])
@@ -21,7 +22,10 @@ const Teachers = () => {
 
    return (
       <div>
-         {teachers.length ? (
+         <h1 style={{ textAlign: 'center' }}>Список преподавателей</h1>
+         {isTeachersLoading ? (
+            <Loading />
+         ) : teachers.length ? (
             <TeachersList teachers={teachers} />
          ) : (
             <h1 style={{ textAlign: 'center' }}>Список преподавателей пуст</h1>
