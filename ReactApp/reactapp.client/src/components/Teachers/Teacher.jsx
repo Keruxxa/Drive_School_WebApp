@@ -5,12 +5,7 @@ const Teacher = ({ teacher }) => {
          <td>{teacher.firstName}</td>
          <td>{teacher.experience}</td>
          <td>
-            <button
-               className='btn btn-light mr-1'
-               data-bs-toggle='modal'
-               data-bs-target='#modal'
-               onClick={() => this.editTeacher(teacher)}
-            >
+            <button className='btn btn-light mr-1'>
                <svg
                   xmlns='http://www.w3.org/2000/svg'
                   width='16'
