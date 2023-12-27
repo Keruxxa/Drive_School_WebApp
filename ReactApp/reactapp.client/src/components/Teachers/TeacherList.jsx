@@ -42,7 +42,6 @@ const TeacherList = ({ teachers }) => {
                      Фамилия
                   </span>
                   <Input
-                     placeholder='Иванов'
                      onChange={(e) =>
                         setTeacherInfo({
                            ...teacherInfo,
@@ -56,7 +55,6 @@ const TeacherList = ({ teachers }) => {
                      Имя
                   </span>
                   <Input
-                     placeholder='Иван'
                      value={teacherInfo.firstName}
                      onChange={(e) =>
                         setTeacherInfo({
@@ -72,8 +70,7 @@ const TeacherList = ({ teachers }) => {
                   </span>
                   <Input
                      type='number'
-                     style={{ min: 0 }}
-                     placeholder='Возраст'
+                     min='0'
                      value={teacherInfo.experience}
                      onChange={(e) =>
                         setTeacherInfo({
@@ -85,12 +82,7 @@ const TeacherList = ({ teachers }) => {
                </div>
             </ModalBody>
             <ModalFooter>
-               <button
-                  className='btn btn-primary'
-                  onClick={() => console.log(teacherInfo)}
-               >
-                  Подтвердить
-               </button>
+               <button className='btn btn-primary'>Подтвердить</button>
 
                <button className='btn btn-secondary' onClick={() => toggleModal()}>
                   Закрыть

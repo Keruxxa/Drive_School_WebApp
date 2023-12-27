@@ -27,7 +27,6 @@ const ModalWindow = () => {
                <div className='input-group mb-3'>
                   <span className='input-group-text'>Фамилия</span>
                   <Input
-                     placeholder='Иванов'
                      value={teacherInfo.lastName}
                      onChange={(e) =>
                         setTeacherInfo({
@@ -40,7 +39,6 @@ const ModalWindow = () => {
                <div className='input-group mb-3'>
                   <span className='input-group-text'>Имя</span>
                   <Input
-                     placeholder='Иван'
                      value={teacherInfo.firstName}
                      onChange={(e) =>
                         setTeacherInfo({
@@ -54,7 +52,6 @@ const ModalWindow = () => {
                   <span className='input-group-text'>Опыт</span>
                   <Input
                      value={teacherInfo.experience}
-                     placeholder='Стаж'
                      style={{ maxWidth: 100 }}
                      onChange={(e) =>
                         setTeacherInfo({
