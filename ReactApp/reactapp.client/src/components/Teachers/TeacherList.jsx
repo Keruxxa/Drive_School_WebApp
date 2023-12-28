@@ -1,16 +1,18 @@
 import Teacher from './Teacher'
 import { useState } from 'react'
-import AddTeacherModal from '../UI/ModalWindows/AddTeacherModal'
+import AddTeacherModal from '../UI/ModalWindows/TeacherModal'
 
-const TeacherList = ({ teachers }) => {
+const TeacherList = ({ teachers, addTeacher }) => {
    const [modalIsOpen, setModalIsOpen] = useState(false)
+   const [modalTitle, setModalTitle] = useState('')
 
    const toggleModal = () => {
+      setModalTitle('Добавление преподавателя')
       setModalIsOpen(!modalIsOpen)
    }
 
-   const createTeacher = (teacher) => {
-      console.log(teacher)
+   const createTeacher = (newTeacher) => {
+      addTeacher(newTeacher)
    }
 
    return (
@@ -22,7 +24,8 @@ const TeacherList = ({ teachers }) => {
          <AddTeacherModal
             isOpen={modalIsOpen}
             toggle={toggleModal}
-            create={createTeacher}
+            createTeacher={createTeacher}
+            modalTitle={modalTitle}
          />
 
          <table className='table table-striped'>

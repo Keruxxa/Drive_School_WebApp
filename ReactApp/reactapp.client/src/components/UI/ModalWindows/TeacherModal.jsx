@@ -1,39 +1,41 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useEffect, useState } from 'react'
 import Input from '../Input/Input'
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
+import Delay from '../../../API/Delay'
 
-const AddTeacherModal = ({ toggle, create, isOpen }) => {
+const AddTeacherModal = ({ toggle, createTeacher, isOpen, modalTitle }) => {
    const [teacher, setTeacher] = useState({
       lastName: '',
       firstName: '',
       experience: 0,
    })
 
-   const createNewTeacher = () => {
-      const newTeacher = { teacher }
-      create(newTeacher)
+   const createNewTeacher = async () => {
+      toggle()
+
+      await Delay.delayedTask(200)
+
+      const newTeacher = {
+         lastName: teacher.lastName,
+         firstName: teacher.firstName,
+         experience: teacher.experience,
+      }
+      createTeacher(newTeacher)
    }
 
    useEffect(() => {
-      const handleBeforeUnload = (prevTeacherInfo) => {
-         setTeacher({
-            ...prevTeacherInfo,
-            lastName: '',
-            firstName: '',
-            experience: 0,
-         })
-      }
-
-      window.addEventListener('beforeunload', handleBeforeUnload)
-
-      return () => {
-         window.removeEventListener('beforeunload', handleBeforeUnload)
-      }
-   }, [])
+      setTeacher({
+         lastName: '',
+         firstName: '',
+         experience: 0,
+      })
+   }, [isOpen])
 
    return (
       <Modal className='modal-dialog-centered' isOpen={isOpen}>
-         <ModalHeader>Добавление преподавателя</ModalHeader>
+         <ModalHeader>{modalTitle}</ModalHeader>
 
          <ModalBody>
             <div className='input-group mb-3'>
@@ -66,11 +68,12 @@ const AddTeacherModal = ({ toggle, create, isOpen }) => {
             </div>
             <div className='input-group mb-3'>
                <span className='input-group-text' style={{ width: 90 }}>
-                  Возраст
+                  Стаж
                </span>
                <Input
                   type='number'
                   min='0'
+                  value={teacher.experience}
                   onChange={(e) =>
                      setTeacher({
                         ...teacher,

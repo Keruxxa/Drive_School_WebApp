@@ -4,6 +4,7 @@ using API.Server.Models;
 using API.Server.Repositories;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace API.Server.Controllers
 {
@@ -67,6 +68,7 @@ namespace API.Server.Controllers
         {
             if (teacherDto == null)
             {
+                ModelState.AddModelError("", "NULL!");
                 return BadRequest(ModelState);
             }
 

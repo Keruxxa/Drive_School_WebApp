@@ -5,7 +5,11 @@ const Teacher = ({ teacher }) => {
          <td>{teacher.firstName}</td>
          <td>{teacher.experience}</td>
          <td>
-            <button className='btn btn-light mr-1'>
+            <button
+               id='editButton'
+               className='btn btn-light mr-1'
+               onClick={() => alert('Удалить преподавателя?')}
+            >
                <svg
                   xmlns='http://www.w3.org/2000/svg'
                   width='16'
@@ -22,7 +26,12 @@ const Teacher = ({ teacher }) => {
                </svg>
             </button>
 
-            <button className='btn btn-light mr-1'>
+            <button
+               style={{ marginLeft: 10 }}
+               id='deletetButton'
+               className='btn btn-light mr-1'
+               onClick={() => alert('Удалить преподавателя?')}
+            >
                <svg
                   xmlns='http://www.w3.org/2000/svg'
                   width='16'
