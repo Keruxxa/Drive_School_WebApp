@@ -1,10 +1,8 @@
 ﻿using API.Server.Dto;
 using API.Server.Interfaces;
 using API.Server.Models;
-using API.Server.Repositories;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace API.Server.Controllers
 {
@@ -38,7 +36,7 @@ namespace API.Server.Controllers
             return Ok(teachersDto);
         }
 
-        [HttpGet("{teacherId}")]
+        [HttpGet("Get/{teacherId}")]
         [ProducesResponseType(200, Type = typeof(Teacher))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetTeacher(int teacherId)
@@ -61,7 +59,7 @@ namespace API.Server.Controllers
         }
 
 
-        [HttpPost("CreateTeacher")]
+        [HttpPost("Create")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public async Task<IActionResult> CreateTeacher([FromBody] TeacherDto teacherDto)
@@ -101,7 +99,7 @@ namespace API.Server.Controllers
         }
 
 
-        [HttpPut("{teacherId}")]
+        [HttpPut("Update/{teacherId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(204)]
@@ -134,7 +132,7 @@ namespace API.Server.Controllers
         }
 
 
-        [HttpDelete("{teacherId}")]
+        [HttpDelete("Delete/{teacherId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(204)]

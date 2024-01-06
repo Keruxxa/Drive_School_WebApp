@@ -34,7 +34,11 @@ const Teachers = () => {
          {isTeachersLoading ? (
             <Loading />
          ) : teachers.length ? (
-            <TeachersList teachers={teachers} addTeacher={addTeacher} />
+            <TeachersList
+               teachers={teachers}
+               addTeacher={addTeacher}
+               refreshTeachers={refreshTeachers}
+            />
          ) : (
             <h1 style={{ textAlign: 'center' }}>Список преподавателей пуст</h1>
          )}

@@ -1,4 +1,13 @@
-const Teacher = ({ teacher }) => {
+const Teacher = ({ teacher, deleteTeacher, update }) => {
+   //
+   const updateTeacher = (teacher) => {
+      update(teacher)
+   }
+
+   const deleteTeacherClick = (teacherId) => {
+      deleteTeacher(teacherId)
+   }
+
    return (
       <tr key={teacher.id}>
          <td>{teacher.lastName}</td>
@@ -8,7 +17,7 @@ const Teacher = ({ teacher }) => {
             <button
                id='editButton'
                className='btn btn-light mr-1'
-               onClick={() => alert('Удалить преподавателя?')}
+               onClick={() => updateTeacher(teacher)}
             >
                <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -30,7 +39,7 @@ const Teacher = ({ teacher }) => {
                style={{ marginLeft: 10 }}
                id='deletetButton'
                className='btn btn-light mr-1'
-               onClick={() => alert('Удалить преподавателя?')}
+               onClick={() => deleteTeacherClick(teacher.id)}
             >
                <svg
                   xmlns='http://www.w3.org/2000/svg'
